@@ -1,0 +1,53 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.0.2.RELEASE")
+    }
+}
+
+
+// Apply the java plugin to add support for Java
+apply plugin: 'java'
+//apply the java plugin to add eclipse suport
+apply plugin: 'eclipse'
+//we need springboot support too
+apply plugin: 'org.springframework.boot'
+//and dependency support
+apply plugin: 'io.spring.dependency-management'
+// Apply the application plugin to add support for building an application
+apply plugin: 'application'
+
+// Apply the checkstyle plugin to add validates source code against the coding standard
+// apply plugin: 'checkstyle'
+
+bootJar {
+    baseName = 'bp3-java-Process-filter'
+    version =  '0.1.0'
+}
+//the repository we want to use
+repositories {
+    mavenCentral()
+}
+//we are going to use java 8
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    // This dependency is found on compile classpath of this component and consumers.
+    //compile 'org.slf4j:slf4j-api:1.7.25'
+    compile 'org.slf4j:slf4j-simple:1.7.25'
+    //spring Boot !!!
+    compile("org.springframework.boot:spring-boot-starter-web") 
+    
+    // Use JUnit test framework
+    testCompile 'junit:junit:4.12'
+}
+
+// Define the main class for the application
+mainClassName = 'App'
+
+// checkstyle {
+//  toolVersion "8.9"
+// }
