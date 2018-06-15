@@ -1,5 +1,7 @@
 package co.cafeto.bp3.model.Impl;
 
+import static org.hamcrest.CoreMatchers.instanceOf;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -55,5 +57,10 @@ public class AdjacentItem {
 	
 	public boolean adjacentListHasNode(NodeImpl node) {
 		return adjacents.contains(node);
+	}
+
+	public void removeEdge(NodeImpl nodeImpl) {
+		adjacents.remove(nodeImpl);	
+		adjacent = adjacents.toArray(new NodeImpl[adjacents.size()]);
 	}
 }

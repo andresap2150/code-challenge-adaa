@@ -46,7 +46,7 @@ public class AjacentListTest {
 		AdjacentItem edgeGW6 = new AdjacentItem(processGatewayNode6, new NodeImpl[] {processGatewayNode2,processGatewayNode7});
 		AdjacentItem edgeGW8 = new AdjacentItem(processGatewayNode7, new NodeImpl[] {processGatewayNode8});
 		
-		NodeImpl[] nodeList =new NodeImpl[] {processGatewayNode0,processGatewayNode1,processGatewayNode3,processGatewayNode4,processGatewayNode5,processGatewayNode6,processGatewayNode7,processGatewayNode8};
+		NodeImpl[] nodeList =new NodeImpl[] {processGatewayNode0,processGatewayNode1,processGatewayNode2,processGatewayNode3,processGatewayNode4,processGatewayNode5,processGatewayNode6,processGatewayNode7,processGatewayNode8};
 		AdjacentItem[] edgeGWList = new AdjacentItem[] {edgeGW0,edgeGW1,edgeGW2,edgeGW3,edgeGW4,edgeGW5,edgeGW6,edgeGW8};
 		AdjacentList gateWprocess = new AdjacentList(nodeList, edgeGWList);
 		gateWprocess.deleteAdjacentItem(edgeGW3);

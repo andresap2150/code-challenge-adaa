@@ -94,19 +94,28 @@ public class AdjacentList {
 		//serch the nodes who have references to that node
 		NodeImpl deleteThis = nodeAndEdges.getNode();
 		ArrayList<AdjacentItem> edges = new ArrayList<>(Arrays.asList(process));
-		List<AdjacentItem> result = edges.stream().filter( a -> a.adjacentListHasNode(deleteThis))
+		//return the new edges with the references updated
+		List<AdjacentItem> result = edges.stream()//.filter( a -> a.adjacentListHasNode(deleteThis))
 				.map(s->  reemplazar(s, nodeAndEdges))						 
 				.collect(Collectors.toList());
-		result.remove(nodeAndEdges) ;
+		
 		process = result.toArray(new AdjacentItem[result.size()]);
+		
+		ArrayList<NodeImpl> nodes = new ArrayList<>(Arrays.asList(nodeList));
+		nodes.remove(nodeAndEdges.getNode());
+		
+		nodeList = nodes.toArray(new NodeImpl[nodes.size()]);
 	}
 
 	public static AdjacentItem reemplazar(AdjacentItem s, AdjacentItem deleteObject) {
-		NodeImpl deleteThis = deleteObject.getNode();
-		NodeImpl[] updateThis = deleteObject.getAdjacent();
-		for (NodeImpl nodeImpl : s.getAdjacent()) {
-			if (nodeImpl.equals(deleteThis))
-				s.addEdges(updateThis);//we have to insert and review if the object is already in the list									
+		if (s.adjacentListHasNode(deleteObject.getNode())) {
+			NodeImpl deleteThis = deleteObject.getNode();
+			NodeImpl[] updateThis = deleteObject.getAdjacent();
+			for (NodeImpl nodeImpl : s.getAdjacent()) {
+				if (nodeImpl.equals(deleteThis))
+					s.addEdges(updateThis);//we have to insert and review if the object is already in the list									
+			}
+			s.removeEdge(deleteThis);
 		}
 		return s;
 	}
