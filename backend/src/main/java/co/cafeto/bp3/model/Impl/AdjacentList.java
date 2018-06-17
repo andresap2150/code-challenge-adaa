@@ -7,6 +7,8 @@ import java.util.stream.Collectors;
 
 import com.bp3.NodeType;
 
+import co.cafeto.adaa.business.AdjacentListUtil;
+
 public class AdjacentList {
 	private NodeImpl[] nodeList;
 	private AdjacentItem[] process;
@@ -61,7 +63,7 @@ public class AdjacentList {
 		ArrayList<AdjacentItem> edges = new ArrayList<>(Arrays.asList(process));
 		//return the new edges with the references updated
 		List<AdjacentItem> result = edges.stream().filter(a -> !a.equals(nodeAndEdges))//filter all the edges but the edge to erase
-				.map(s->  replace(s, nodeAndEdges))						 
+				.map(s->  AdjacentListUtil.replace(s, nodeAndEdges))						 
 				.collect(Collectors.toList());
 		
 		process = result.toArray(new AdjacentItem[result.size()]);
@@ -70,19 +72,6 @@ public class AdjacentList {
 		nodes.remove(nodeAndEdges.getNode());
 		
 		nodeList = nodes.toArray(new NodeImpl[nodes.size()]);
-	}
-
-	public static AdjacentItem replace(AdjacentItem s, AdjacentItem deleteObject) {
-		if (s.adjacentListHasNode(deleteObject.getNode())) {
-			NodeImpl deleteThis = deleteObject.getNode();
-			NodeImpl[] updateThis = deleteObject.getAdjacent();
-			for (NodeImpl nodeImpl : s.getAdjacent()) {
-				if (nodeImpl.equals(deleteThis))
-					s.addEdges(updateThis);//we have to insert and review if the object is already in the list									
-			}
-			s.removeEdge(deleteThis);//we delete the node
-		}
-		return s;
 	}
 }
 
