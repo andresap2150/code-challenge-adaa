@@ -4,14 +4,15 @@ package co.cafeto.bp3.model.Impl;
 
 public class Bp3process {
 	
-	private NodeImpl[] nodos;
+	private NodeImpl[] nodes;
 	private EdgeImpl[] edges;
 	
-	public NodeImpl[] getNodos() {
-		return nodos;
+	
+	public NodeImpl[] getNodes() {
+		return nodes;
 	}
-	public void setNodos(NodeImpl[] nodos) {
-		this.nodos = nodos;
+	public void setNodes(NodeImpl[] nodes) {
+		this.nodes = nodes;
 	}
 	public EdgeImpl[] getEdges() {
 		return edges;
