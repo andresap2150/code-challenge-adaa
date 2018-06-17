@@ -11,21 +11,6 @@ import co.cafeto.bp3.model.Impl.NodeImpl;
 public class AjacentListTest {
 	@Test
 	public void testISolateNode(){
-		NodeImpl node0 = new NodeImpl("0","Start",NodeType.START);
-		NodeImpl node1 = new NodeImpl("1","ServiceTask",NodeType.SERVICE_TASK);
-		NodeImpl node2 = new NodeImpl("2","End",NodeType.END);
-		
-		AdjacentItem edge0 = new AdjacentItem(node0, new NodeImpl[] {node1});
-		AdjacentItem edge1 = new AdjacentItem(node1, new NodeImpl[] {node2});
-		
-		AdjacentList process = new AdjacentList(new NodeImpl[] {node0,node1,node2} ,new AdjacentItem[] {edge0,edge1});
-		
-		AdjacentItem edgeRes0 = new AdjacentItem(node0, new NodeImpl[] {node2});
-		AdjacentList processRes = new AdjacentList(new NodeImpl[] {node0,node1,node2}, new AdjacentItem[] {edgeRes0});
-		
-		process.isolateNode(node1);
-		
-		assertEquals(process, processRes);
 		
 		NodeImpl processGatewayNode0 = new NodeImpl("0", "Start", NodeType.START);
 		NodeImpl processGatewayNode1 = new NodeImpl("1", "A", NodeType.SERVICE_TASK);
@@ -48,7 +33,14 @@ public class AjacentListTest {
 		
 		NodeImpl[] nodeList =new NodeImpl[] {processGatewayNode0,processGatewayNode1,processGatewayNode2,processGatewayNode3,processGatewayNode4,processGatewayNode5,processGatewayNode6,processGatewayNode7,processGatewayNode8};
 		AdjacentItem[] edgeGWList = new AdjacentItem[] {edgeGW0,edgeGW1,edgeGW2,edgeGW3,edgeGW4,edgeGW5,edgeGW6,edgeGW8};
-		AdjacentList gateWprocess = new AdjacentList(nodeList, edgeGWList);
-		gateWprocess.deleteAdjacentItem(edgeGW3);
+		AdjacentList actualGateWProcess = new AdjacentList(nodeList, edgeGWList);
+		
+		NodeImpl[] expcNodeList = new NodeImpl[] {processGatewayNode0,processGatewayNode1,processGatewayNode2,processGatewayNode4,processGatewayNode5,processGatewayNode6,processGatewayNode7,processGatewayNode8};
+		AdjacentItem expcEdge2 = new AdjacentItem(processGatewayNode2, new NodeImpl[] {processGatewayNode4, processGatewayNode5});
+		AdjacentItem[] expcEdgeGWList = new AdjacentItem[] {edgeGW0,edgeGW1,expcEdge2,edgeGW4,edgeGW5,edgeGW6,edgeGW8};
+		AdjacentList expectedGateWProcess = new AdjacentList(expcNodeList,expcEdgeGWList);
+		
+		actualGateWProcess.deleteAdjacentItem(edgeGW3);
+		assertEquals(expectedGateWProcess, actualGateWProcess);		
 	}
 }

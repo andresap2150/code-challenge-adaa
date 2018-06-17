@@ -37,41 +37,6 @@ public class AdjacentList {
 		this.nodeList = nodeList;
 	}
 
-	public void isolateNode(NodeImpl nodeToIsolate){
-		
-		AdjacentItem source = null;   //items to delete
-		ArrayList<AdjacentItem> destination = new ArrayList<>(); // items to modify
-		
-		for (AdjacentItem adjacentItem : process) {
-			if (adjacentItem.getNode().equals(nodeToIsolate)) {
-				source = adjacentItem; //we have to keep the destination of this
-			}
-			for (NodeImpl nodeImpl : adjacentItem.getAdjacent()) {
-				if(nodeImpl.equals(nodeToIsolate)) {
-					destination.add(adjacentItem); //we have to keep the origin of this
-					if (adjacentItem.getNode().equalsType(NodeType.GATEWAY)) //if the type is gateway, we have to aisle the gateway too
-						isolateNode(adjacentItem.getNode()); //we do that with recursion
-				}
-			}
-		}
-		
-		ArrayList<AdjacentItem> temporalList = new ArrayList<>();
-		for (AdjacentItem adjacentItem : destination) {
-			for (NodeImpl node : adjacentItem.getAdjacent()) {
-				if (node.equals(nodeToIsolate))
-					temporalList.add(new AdjacentItem(adjacentItem.getNode(),source.getAdjacent()));
-			}
-		}
-		
-		ArrayList<AdjacentItem> processAsList = new ArrayList<>(Arrays.asList(process));
-		destination.add(source);
-		processAsList.removeAll(destination);
-		processAsList.addAll(temporalList);
-		
-		this.process = processAsList.toArray(new AdjacentItem[processAsList.size()]);	
-	}
-
-	
 	@Override
 	public boolean equals(Object obj) {
 		AdjacentList adja = (AdjacentList) obj;
@@ -95,8 +60,8 @@ public class AdjacentList {
 		NodeImpl deleteThis = nodeAndEdges.getNode();
 		ArrayList<AdjacentItem> edges = new ArrayList<>(Arrays.asList(process));
 		//return the new edges with the references updated
-		List<AdjacentItem> result = edges.stream()//.filter( a -> a.adjacentListHasNode(deleteThis))
-				.map(s->  reemplazar(s, nodeAndEdges))						 
+		List<AdjacentItem> result = edges.stream().filter(a -> !a.equals(nodeAndEdges))//filter all the edges but the edge to erase
+				.map(s->  replace(s, nodeAndEdges))						 
 				.collect(Collectors.toList());
 		
 		process = result.toArray(new AdjacentItem[result.size()]);
@@ -107,7 +72,7 @@ public class AdjacentList {
 		nodeList = nodes.toArray(new NodeImpl[nodes.size()]);
 	}
 
-	public static AdjacentItem reemplazar(AdjacentItem s, AdjacentItem deleteObject) {
+	public static AdjacentItem replace(AdjacentItem s, AdjacentItem deleteObject) {
 		if (s.adjacentListHasNode(deleteObject.getNode())) {
 			NodeImpl deleteThis = deleteObject.getNode();
 			NodeImpl[] updateThis = deleteObject.getAdjacent();
@@ -115,7 +80,7 @@ public class AdjacentList {
 				if (nodeImpl.equals(deleteThis))
 					s.addEdges(updateThis);//we have to insert and review if the object is already in the list									
 			}
-			s.removeEdge(deleteThis);
+			s.removeEdge(deleteThis);//we delete the node
 		}
 		return s;
 	}
