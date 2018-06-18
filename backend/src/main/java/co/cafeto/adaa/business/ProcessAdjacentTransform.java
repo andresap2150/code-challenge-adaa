@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 import org.apache.coyote.ajp.AjpAprProtocol;
 
+import co.cafeto.adaa.exception.MappingProcessException;
 import co.cafeto.bp3.model.Impl.AdjacentItem;
 import co.cafeto.bp3.model.Impl.AdjacentList;
 import co.cafeto.bp3.model.Impl.Bp3process;
@@ -16,7 +17,7 @@ import co.cafeto.bp3.model.Impl.NodeImpl;
 
 public class ProcessAdjacentTransform {
 	
-	public static AdjacentList transformProcessIntoAdjacentList(Bp3process process) throws Exception {
+	public static AdjacentList transformProcessIntoAdjacentList(Bp3process process) throws MappingProcessException {
 		if (process != null && process.getNodes() != null && 
 				process.getNodes().length >= 2 && 
 				process.getEdges() != null && 
@@ -43,7 +44,7 @@ public class ProcessAdjacentTransform {
 			
 			return new AdjacentList(process.getNodes(),edges.toArray(new AdjacentItem[edges.size()]));
 		}
-		throw new Exception("Could not trasform input into an Adjacent List");
+		throw new MappingProcessException();
 	}
 	
 	private static Map<String, NodeImpl> getNodeMap(NodeImpl[] nodes) {

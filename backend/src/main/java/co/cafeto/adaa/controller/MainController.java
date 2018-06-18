@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import co.cafeto.adaa.business.ProcessModifier;
 import co.cafeto.bp3.model.Impl.Bp3process;
 
 @RestController
@@ -13,7 +14,8 @@ public class MainController {
 	
 	@ResponseBody
 	@PostMapping("/reduce")
-	public Bp3process reduce(@RequestBody Bp3process process) {
-		return process;		
+	public Bp3process reduce(@RequestBody Bp3process process) throws Exception {
+		ProcessModifier modifier = new ProcessModifier(process);
+		return modifier.eraseNodesByTypeConfig();		
 	}
 }
