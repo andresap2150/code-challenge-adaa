@@ -60,7 +60,7 @@ public class AdjacentList {
 	public void deleteAdjacentItem(AdjacentItem nodeAndEdges) {
 		//serch the nodes who have references to that node
 		NodeImpl deleteThis = nodeAndEdges.getNode();
-		ArrayList<AdjacentItem> edges = new ArrayList<>(Arrays.asList(process));
+		List<AdjacentItem> edges = new ArrayList<>(Arrays.asList(process));
 		//return the new edges with the references updated
 		List<AdjacentItem> result = edges.stream().filter(a -> !a.equals(nodeAndEdges))//filter all the edges but the edge to erase
 				.map(s->  AdjacentListUtil.replace(s, nodeAndEdges))						 
@@ -68,7 +68,7 @@ public class AdjacentList {
 		
 		process = result.toArray(new AdjacentItem[result.size()]);
 		
-		ArrayList<NodeImpl> nodes = new ArrayList<>(Arrays.asList(nodeList));
+		List<NodeImpl> nodes = new ArrayList<>(Arrays.asList(nodeList));
 		nodes.remove(nodeAndEdges.getNode());
 		
 		nodeList = nodes.toArray(new NodeImpl[nodes.size()]);

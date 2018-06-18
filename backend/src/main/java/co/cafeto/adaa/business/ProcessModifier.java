@@ -24,7 +24,7 @@ public class ProcessModifier {
 	public Bp3process eraseNodesByTypeConfig() throws Exception {
 		AdjacentList adjacentList = ProcessAdjacentTransform.transformProcessIntoAdjacentList(inputprocess);
 		
-		ArrayList<AdjacentItem> edgeList = new ArrayList<>(Arrays.asList(adjacentList.getProcess()));
+		List<AdjacentItem> edgeList = new ArrayList<>(Arrays.asList(adjacentList.getProcess()));
 		
 		List<AdjacentItem> eraseEdgeList = edgeList.stream()
 														.filter(s -> s.getNode().equalsType(NodeType.SERVICE_TASK))

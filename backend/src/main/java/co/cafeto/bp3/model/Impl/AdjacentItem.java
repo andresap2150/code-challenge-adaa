@@ -2,12 +2,13 @@ package co.cafeto.bp3.model.Impl;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class AdjacentItem {
 	private NodeImpl node;
 	private NodeImpl[] adjacent;
 	
-	private ArrayList<NodeImpl> adjacents;
+	private List<NodeImpl> adjacents;
 	
 	public AdjacentItem(NodeImpl node, NodeImpl[] adjacent) {
 		super();
