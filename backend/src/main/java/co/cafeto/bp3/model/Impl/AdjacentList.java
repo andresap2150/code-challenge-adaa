@@ -56,14 +56,20 @@ public class AdjacentList {
 		}
 		return true;
 	}
-
+	
+	/**
+	 * this modify the internal AdjacentItem list and the NodeImpl list,
+	 * search all the AdjacentItem which are target to update
+	 * <p> 
+	 *
+	 * @param  nodeAndEdges  	the adjacentItem remove
+ 	 * @return      			void
+	 */
 	public void deleteAdjacentItem(AdjacentItem nodeAndEdges) {
-		//serch the nodes who have references to that node
-		NodeImpl deleteThis = nodeAndEdges.getNode();
 		List<AdjacentItem> edges = new ArrayList<>(Arrays.asList(process));
 		//return the new edges with the references updated
 		List<AdjacentItem> result = edges.stream().filter(a -> !a.equals(nodeAndEdges))//filter all the edges but the edge to erase
-				.map(s->  AdjacentListUtil.replace(s, nodeAndEdges))						 
+				.map(s->  AdjacentListUtil.replace(s, nodeAndEdges))//update the AdjacentItem						 
 				.collect(Collectors.toList());
 		
 		process = result.toArray(new AdjacentItem[result.size()]);

@@ -25,11 +25,11 @@ public class ProcessModifier {
 		AdjacentList adjacentList = ProcessAdjacentTransform.transformProcessIntoAdjacentList(inputprocess);
 		
 		List<AdjacentItem> edgeList = new ArrayList<>(Arrays.asList(adjacentList.getProcess()));
-		
+		//in order to deliver a fast solution, first we get all the nodes to erase
 		List<AdjacentItem> eraseEdgeList = edgeList.stream()
 														.filter(s -> s.getNode().equalsType(NodeType.SERVICE_TASK))
 														.collect(Collectors.toList());
-		
+		//we erase one by one
 		for (AdjacentItem adjacentItem : eraseEdgeList) {
 			adjacentList.deleteAdjacentItem(adjacentItem);
 		}
