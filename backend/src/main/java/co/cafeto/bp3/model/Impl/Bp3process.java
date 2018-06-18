@@ -1,7 +1,5 @@
 package co.cafeto.bp3.model.Impl;
 
-
-
 public class Bp3process {
 	
 	private NodeImpl[] nodes;

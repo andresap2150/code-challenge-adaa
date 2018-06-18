@@ -6,6 +6,15 @@ public class EdgeImpl implements Edge {
 	
 	String from;
 	String to;
+		
+	public EdgeImpl() {
+		super();
+	}
+
+	public EdgeImpl(String from, String to) {
+		this.from = from;
+		this.to = to;
+	}
 	
 	public String getFrom() {
 		return from;
