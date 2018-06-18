@@ -1,11 +1,7 @@
 package co.cafeto.bp3.model.Impl;
 
-import static org.hamcrest.CoreMatchers.instanceOf;
-
 import java.util.ArrayList;
 import java.util.Arrays;
-
-import co.cafeto.bp3.model.Impl.DirectedGraph.NodeClass;
 
 public class AdjacentItem {
 	private NodeImpl node;
