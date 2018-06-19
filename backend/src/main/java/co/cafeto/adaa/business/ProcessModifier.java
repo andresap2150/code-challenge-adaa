@@ -33,9 +33,7 @@ public class ProcessModifier {
 			adjacentList.deleteAdjacentItem(adjacentItem);
 		}
 		
-		Bp3process response = ProcessAdjacentTransform.transformListIntoProcess(adjacentList);
-		
-		return response;
+		return ProcessAdjacentTransform.transformListIntoProcess(adjacentList);
 	}
 	
 		

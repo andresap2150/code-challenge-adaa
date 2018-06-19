@@ -13,7 +13,7 @@ public class MainController {
 	
 	@ResponseBody
 	@PostMapping("/reduce")
-	public Bp3process reduce(@RequestBody Bp3process process) throws Exception {
+	public Bp3process reduce(@RequestBody Bp3process process) {
 		ProcessModifier modifier = new ProcessModifier(process);
 		return modifier.eraseNodesByTypeConfig();		
 	}
