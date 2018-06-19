@@ -20,7 +20,7 @@ public class ProcessAdjacentTransform {
 		throw new IllegalStateException("Utility class");
 	}
 	
-	public static AdjacentList transformProcessIntoAdjacentList(Bp3process process) throws RuntimeException {
+	public static AdjacentList transformProcessIntoAdjacentList(Bp3process process) {
 		if (process != null && process.getNodes() != null && 
 				process.getNodes().length >= 2 && 
 				process.getEdges() != null && 
