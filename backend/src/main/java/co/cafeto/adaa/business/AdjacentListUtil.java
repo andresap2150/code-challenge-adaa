@@ -1,9 +1,13 @@
 package co.cafeto.adaa.business;
 
-import co.cafeto.bp3.model.Impl.AdjacentItem;
-import co.cafeto.bp3.model.Impl.NodeImpl;
+import co.cafeto.bp3.model.impl.AdjacentItem;
+import co.cafeto.bp3.model.impl.NodeImpl;
 
 public class AdjacentListUtil {
+	private AdjacentListUtil() {
+		throw new IllegalStateException("Utility class");
+	}
+	
 	/**
 	 * Returns an adjacent item with the destinations updated, if a edge 
 	 * points to a node that is going to be erased, the destination on the 

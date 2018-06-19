@@ -8,15 +8,19 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import co.cafeto.adaa.exception.MappingProcessException;
-import co.cafeto.bp3.model.Impl.AdjacentItem;
-import co.cafeto.bp3.model.Impl.AdjacentList;
-import co.cafeto.bp3.model.Impl.Bp3process;
-import co.cafeto.bp3.model.Impl.EdgeImpl;
-import co.cafeto.bp3.model.Impl.NodeImpl;
+import co.cafeto.bp3.model.impl.AdjacentItem;
+import co.cafeto.bp3.model.impl.AdjacentList;
+import co.cafeto.bp3.model.impl.Bp3process;
+import co.cafeto.bp3.model.impl.EdgeImpl;
+import co.cafeto.bp3.model.impl.NodeImpl;
 
 public class ProcessAdjacentTransform {
 	
-	public static AdjacentList transformProcessIntoAdjacentList(Bp3process process) throws MappingProcessException {
+	private ProcessAdjacentTransform() {
+		throw new IllegalStateException("Utility class");
+	}
+	
+	public static AdjacentList transformProcessIntoAdjacentList(Bp3process process) throws RuntimeException {
 		if (process != null && process.getNodes() != null && 
 				process.getNodes().length >= 2 && 
 				process.getEdges() != null && 
@@ -33,15 +37,15 @@ public class ProcessAdjacentTransform {
 				//we get all the edges which start in the node to evaluate
 				List<EdgeImpl> temporalEdgeList = new ArrayList<>(edgeList.stream().filter(a -> a.getFrom() == actualNode.getId()).collect(Collectors.toList()));
 				
-				if (temporalEdgeList.size() > 0) { // if we have at least one edge
-					NodeImpl[] LocalAdjacentNodes = new NodeImpl[temporalEdgeList.size()];
+				if (!temporalEdgeList.isEmpty()) { // if we have at least one edge
+					NodeImpl[] localAdjacentNodes = new NodeImpl[temporalEdgeList.size()];
 					for (int j = 0; j < temporalEdgeList.size(); j++) {
 						//we get all the destination of the starting edge and add to the destination list
 						//a map collection is used because we only have the node id 
-						LocalAdjacentNodes[j] = nodeMap.get(temporalEdgeList.get(j).getTo());
+						localAdjacentNodes[j] = nodeMap.get(temporalEdgeList.get(j).getTo());
 					}
 					//the adjacent item is added to the process
-					edges.add(new AdjacentItem(nodeMap.get(actualNode.getId()), LocalAdjacentNodes));
+					edges.add(new AdjacentItem(nodeMap.get(actualNode.getId()), localAdjacentNodes));
 				}				
 			}
 			//we return and create the nodes and the adjacent list to the caller

@@ -1,4 +1,4 @@
-package co.cafeto.bp3.model.Impl;
+package co.cafeto.bp3.model.impl;
 
 public class Bp3process {
 	

@@ -1,4 +1,4 @@
-package co.cafeto.bp3.model.Impl;
+package co.cafeto.bp3.model.impl;
 
 import com.bp3.Node;
 import com.bp3.NodeType;

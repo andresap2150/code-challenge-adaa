@@ -1,4 +1,4 @@
-package co.cafeto.bp3.model.Impl;
+package co.cafeto.bp3.model.impl;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,7 +14,7 @@ public class AdjacentItem {
 		super();
 		this.node = node;
 		this.adjacent = adjacent;
-		this.adjacents = new ArrayList<NodeImpl>(Arrays.asList(adjacent));
+		this.adjacents = new ArrayList<>(Arrays.asList(adjacent));
 	}
 	
 	public NodeImpl getNode() {

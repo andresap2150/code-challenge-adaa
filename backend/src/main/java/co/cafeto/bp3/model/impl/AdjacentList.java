@@ -1,11 +1,9 @@
-package co.cafeto.bp3.model.Impl;
+package co.cafeto.bp3.model.impl;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import com.bp3.NodeType;
 
 import co.cafeto.adaa.business.AdjacentListUtil;
 

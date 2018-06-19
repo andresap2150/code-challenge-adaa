@@ -4,9 +4,9 @@ import org.junit.Test;
 
 import com.bp3.NodeType;
 
-import co.cafeto.bp3.model.Impl.AdjacentItem;
-import co.cafeto.bp3.model.Impl.AdjacentList;
-import co.cafeto.bp3.model.Impl.NodeImpl;
+import co.cafeto.bp3.model.impl.AdjacentItem;
+import co.cafeto.bp3.model.impl.AdjacentList;
+import co.cafeto.bp3.model.impl.NodeImpl;
 
 public class AjacentListTest {
 	@Test

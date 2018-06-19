@@ -6,11 +6,11 @@ import com.bp3.NodeType;
 
 import co.cafeto.adaa.business.AdjacentListUtil;
 import co.cafeto.adaa.business.ProcessAdjacentTransform;
-import co.cafeto.bp3.model.Impl.AdjacentItem;
-import co.cafeto.bp3.model.Impl.AdjacentList;
-import co.cafeto.bp3.model.Impl.Bp3process;
-import co.cafeto.bp3.model.Impl.EdgeImpl;
-import co.cafeto.bp3.model.Impl.NodeImpl;
+import co.cafeto.bp3.model.impl.AdjacentItem;
+import co.cafeto.bp3.model.impl.AdjacentList;
+import co.cafeto.bp3.model.impl.Bp3process;
+import co.cafeto.bp3.model.impl.EdgeImpl;
+import co.cafeto.bp3.model.impl.NodeImpl;
 
 public class ProcessAdjacentTransformTest {
 	@Test

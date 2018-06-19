@@ -7,10 +7,9 @@ import java.util.stream.Collectors;
 
 import com.bp3.NodeType;
 
-import co.cafeto.bp3.model.Impl.AdjacentItem;
-import co.cafeto.bp3.model.Impl.AdjacentList;
-import co.cafeto.bp3.model.Impl.Bp3process;
-import co.cafeto.bp3.model.Impl.NodeImpl;
+import co.cafeto.bp3.model.impl.AdjacentItem;
+import co.cafeto.bp3.model.impl.AdjacentList;
+import co.cafeto.bp3.model.impl.Bp3process;
 
 public class ProcessModifier {
 	
@@ -21,7 +20,7 @@ public class ProcessModifier {
 		this.inputprocess = process;
 	}
 
-	public Bp3process eraseNodesByTypeConfig() throws Exception {
+	public Bp3process eraseNodesByTypeConfig() {
 		AdjacentList adjacentList = ProcessAdjacentTransform.transformProcessIntoAdjacentList(inputprocess);
 		
 		List<AdjacentItem> edgeList = new ArrayList<>(Arrays.asList(adjacentList.getProcess()));
@@ -33,8 +32,10 @@ public class ProcessModifier {
 		for (AdjacentItem adjacentItem : eraseEdgeList) {
 			adjacentList.deleteAdjacentItem(adjacentItem);
 		}
-
-		return null;
+		
+		Bp3process response = ProcessAdjacentTransform.transformListIntoProcess(adjacentList);
+		
+		return response;
 	}
 	
 		
