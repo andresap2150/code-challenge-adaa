@@ -53,7 +53,7 @@ public class AdjacentItem {
 	
 	@Override
 	public int hashCode() {
-		int temp = adjacents.stream().mapToInt(a -> a.hashCode()).sum();
+		int temp = adjacents.stream().mapToInt(NodeImpl::hashCode).sum();
 		return node.hashCode() + temp; 
 	}
 

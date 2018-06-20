@@ -3,7 +3,6 @@ package co.cafeto.bp3.model.impl;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 import co.cafeto.adaa.business.AdjacentListUtil;

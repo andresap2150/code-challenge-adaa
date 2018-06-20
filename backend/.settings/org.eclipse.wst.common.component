@@ -2,7 +2,6 @@
     <wb-module deploy-name="bp3-java-process-filter">
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test/java"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
         <property name="context-root" value="bp3-java-process-filter"/>
         <property name="java-output-path" value="/bp3-java-process-filter/bin/default"/>
     </wb-module>
