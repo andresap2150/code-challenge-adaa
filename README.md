@@ -12,3 +12,5 @@ There are a couple of directories to note:
 
 See the `README` in either the `backend` or `frontend` directories for more information on that version of the 
 exercise.
+
+https://sonarcloud.io/api/project_badges/measure?project=bp3-interview-project%3Abp3-java-process-filter&metric=alert_status
