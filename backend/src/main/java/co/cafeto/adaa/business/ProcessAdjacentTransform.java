@@ -35,7 +35,7 @@ public class ProcessAdjacentTransform {
 				
 				NodeImpl actualNode = process.getNodes()[i]; //get the nodes for easy referentiation
 				//we get all the edges which start in the node to evaluate
-				List<EdgeImpl> temporalEdgeList = new ArrayList<>(edgeList.stream().filter(a -> a.getFrom() == actualNode.getId()).collect(Collectors.toList()));
+				List<EdgeImpl> temporalEdgeList = new ArrayList<>(edgeList.stream().filter(a -> a.getFrom().equals(actualNode.getId())).collect(Collectors.toList()));
 				
 				if (!temporalEdgeList.isEmpty()) { // if we have at least one edge
 					NodeImpl[] localAdjacentNodes = new NodeImpl[temporalEdgeList.size()];

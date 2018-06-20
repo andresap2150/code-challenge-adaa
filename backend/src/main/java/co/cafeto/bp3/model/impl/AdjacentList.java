@@ -3,6 +3,7 @@ package co.cafeto.bp3.model.impl;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import co.cafeto.adaa.business.AdjacentListUtil;
@@ -39,6 +40,10 @@ public class AdjacentList {
 
 	@Override
 	public boolean equals(Object obj) {
+		if (obj == null)
+			return false;
+		if (this.getClass() != obj.getClass())
+			return false;
 		AdjacentList adja = (AdjacentList) obj;
 		if (this.nodeList.length != adja.nodeList.length)
 			return false;
@@ -55,6 +60,18 @@ public class AdjacentList {
 		return true;
 	}
 	
+	@Override
+	public int hashCode() {
+		int temp = 0;
+		for (int i = 0; i < nodeList.length; i++) {
+			temp += nodeList[i].hashCode();
+		}
+		for (int i = 0; i < process.length; i++) {
+			temp += process[i].hashCode();
+		}
+		return temp;
+	}
+
 	/**
 	 * this modify the internal AdjacentItem list and the NodeImpl list,
 	 * search all the AdjacentItem which are target to update

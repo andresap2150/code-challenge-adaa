@@ -20,17 +20,25 @@ public class AdjacentItem {
 	public NodeImpl getNode() {
 		return node;
 	}
+	
 	public void setNode(NodeImpl node) {
 		this.node = node;
 	}
+	
 	public NodeImpl[] getAdjacent() {
 		return adjacent;
 	}
+	
 	public void setAdjacent(NodeImpl[] adjacent) {
 		this.adjacent = adjacent;
 	}
+	
 	@Override
-	public boolean equals(Object o) {		
+	public boolean equals(Object o) {
+		if (o == null)
+			return false;
+		if (this.getClass() != o.getClass())
+			return false;
 		AdjacentItem item = (AdjacentItem) o;
 		if (!this.node.equals(item.node))
 			return false;
@@ -41,6 +49,12 @@ public class AdjacentItem {
 				return false;
 		}
 		return true;
+	}
+	
+	@Override
+	public int hashCode() {
+		int temp = adjacents.stream().mapToInt(a -> a.hashCode()).sum();
+		return node.hashCode() + temp; 
 	}
 
 	public void addEdges(NodeImpl[] updateThis) {

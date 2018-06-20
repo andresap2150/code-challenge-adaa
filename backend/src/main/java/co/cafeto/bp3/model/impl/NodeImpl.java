@@ -1,5 +1,7 @@
 package co.cafeto.bp3.model.impl;
 
+import java.util.Objects;
+
 import com.bp3.Node;
 import com.bp3.NodeType;
 
@@ -27,10 +29,18 @@ public class NodeImpl implements Node {
 	}
 	@Override
 	public boolean equals(Object o) {
+		if (o == null)
+			return false;
+		if (this.getClass() != o.getClass())
+			return false;
 		NodeImpl node = (NodeImpl) o;
 		return this.id.equals(node.id);
 	}
 	
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
 	public boolean equalsType(NodeType type) {
 		return this.type.equals(type);
 	}
