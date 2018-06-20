@@ -65,4 +65,18 @@ public class ProcessAdjacentTransformTest {
 		
 		assertEquals(adjacentList, actualAdjacentList);
 	}
+	
+	@Test
+	public void testTransformAdjacentListIntoProcess() {
+		NodeImpl bp3node0 = new NodeImpl("0", "Start", NodeType.START);
+		NodeImpl bp3node1 = new NodeImpl("1", "End", NodeType.END);
+		EdgeImpl bp3edge = new EdgeImpl("0","1");
+		
+		Bp3process bp3process = new Bp3process();
+		bp3process.setNodes(new NodeImpl[] {bp3node0,bp3node1});
+		bp3process.setEdges(new EdgeImpl[] {bp3edge});
+		
+		AdjacentList adjacentList = ProcessAdjacentTransform.transformProcessIntoAdjacentList(bp3process);
+		ProcessAdjacentTransform.transformListIntoProcess(adjacentList);
+	}
 }

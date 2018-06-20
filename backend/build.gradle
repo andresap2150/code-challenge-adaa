@@ -6,7 +6,8 @@ buildscript {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:2.0.2.RELEASE")
     }
 }
-
+//new way of declare plugin
+//we add sonnarQube support
 plugins {
   id "org.sonarqube" version "2.6"
 }
@@ -20,9 +21,8 @@ apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 // Apply the application plugin to add support for building an application
 apply plugin: 'application'
-//new way of declare plugin
-//we add sonnarQube support
-
+//jaCoCo for coverage support
+apply plugin: "jacoco"
 
 // Apply the checkstyle plugin to add validates source code against the coding standard
 // apply plugin: 'checkstyle'

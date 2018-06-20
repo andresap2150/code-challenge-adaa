@@ -1,9 +1,14 @@
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 
 import org.junit.Test;
+import org.omg.CORBA.NO_IMPLEMENT;
 
 import com.bp3.NodeType;
 
+import co.cafeto.adaa.business.AdjacentListUtil;
+import co.cafeto.adaa.exception.MappingProcessException;
 import co.cafeto.bp3.model.impl.AdjacentItem;
 import co.cafeto.bp3.model.impl.AdjacentList;
 import co.cafeto.bp3.model.impl.NodeImpl;
@@ -43,4 +48,34 @@ public class AjacentListTest {
 		actualGateWProcess.deleteAdjacentItem(edgeGW3);
 		assertEquals(expectedGateWProcess, actualGateWProcess);		
 	}
+	
+	@Test
+	public void comparatorTest() {
+		AdjacentList singleList = new AdjacentList();
+		
+		NodeImpl singleProcessNode0 = new NodeImpl("0", "Start", NodeType.START);
+		NodeImpl singleProcessNode1 = new NodeImpl("1", "Start", NodeType.END);
+		
+		singleList.setNodeList(new NodeImpl[] {singleProcessNode0,singleProcessNode1});
+		
+		AdjacentItem singleEdge = new AdjacentItem(singleProcessNode0, new NodeImpl[] {singleProcessNode1});
+		
+		singleList.setProcess(new AdjacentItem[] {singleEdge});
+		
+		assertArrayEquals(singleList.getNodeList(), new NodeImpl[] {singleProcessNode0,singleProcessNode1});
+		assertArrayEquals(singleList.getProcess(), new AdjacentItem[] {singleEdge});
+		
+		assertEquals(false, singleList.equals(null));
+		assertEquals(false, singleList.equals(singleEdge));
+		
+		AdjacentList singleList2 = new AdjacentList(new NodeImpl[] {singleProcessNode0,singleProcessNode1}, new AdjacentItem[] {singleEdge});
+		
+		assertEquals(singleList.hashCode(), singleList2.hashCode());
+	}
+	
+	/*@Test(expected = Error.class)
+	public void constructorTest(){
+		AdjacentListUtil util = new AdjacentListUtil();
+	}*/
+	
 }
